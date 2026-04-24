@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, Iinitial scale=1.0">
+        <title>Tambah Data Mahasiswa</title>
+    </head>
+    <body>
+        <h2>Tambah Data Mahasiswa</h2>
+        <form action="mahasiswa.html" method="post">
+            <table cellpadding="5px">
+                <tr>
+                    <td><label for="nama">Nama</label></td>
+                    <td>:</td>
+                    <td><input type="text" id="nama" name="nama" /></td>
+                </tr>
+                <tr>
+                    <td><label for="foto">Foto</label></td>
+                    <td>:</td>
+                    <td><input type="file" id="foto" name="foto" /></td>
+                </tr>
+                <tr>
+                    <td><label for="uts">UTS</label></td>
+                    <td>:</td>
+                    <td><input type="number" id="uts" name="uts" /></td>
+                </tr>
+                <tr>
+                    <td><label for="uas">UAS</label></td>
+                    <td>:</td>
+                    <td><input type="number" id="uas" name="uas" /></td>
+                </tr>
+                <tr>
+                     <td><label for="tugas">TUGAS</label></td>
+                    <td>:</td>
+                    <td><input type="number" id="tugas" name="tugas" /></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button type="submit" name="Submit">Tambah</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <hr/>
+        <form>
+            <table cellpadding="5px">
+                 <tr>
+                    <td><label for="nama">Nama</label></td>
+                    <td>:</td>
+                    <td><input type="text" id="nama" name="nama" /></td>
+                </tr>
+                 <tr>
+                    <td><label for="nim">NIM</label></td>
+                    <td>:</td>
+                    <td><input type="number" id="nim" name="nim" /></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td>:</td>
+                    <td><input type="password" id="passowrd" name="password" /></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td>:</td>
+                    <td><input type="email" id="email" name="email" /></td>
+                </tr>
+                <tr>
+                    <td><label for="hp">No HP</label></td>
+                    <td>:</td>
+                    <td><input type="tel" id="hp" name="hp" pattern="[0-9]{10,13}" placeholder="08xxxxxxxxxx" required /></td>
+                </tr>
+                <tr>
+                     <td><label for="website">Website Pribadi</label></td>
+                    <td>:</td>
+                    <td><input type="url" id="website" name="website" /></td>
+                </tr>
+                <tr>
+                    <td><label for="tanggal lahir">Tanggal Lahir</label></td>
+                    <td>:</td>
+                    <td><input type="date" id="tanggal lahir" name="tanggal lahir" /></td>
+                </tr>
+                <tr>
+                    <td><label for="warna">Warna Favorit</label></td>
+                    <td>:</td>
+                    <td><input type="color" id="warna" name="warna" /></td>
+                </tr>
+                <tr>
+                    <td><label for="tingkat kepuasan">Tingkat kepuasan</label></td>
+                    <td>:</td>
+                    <td><input type="range" id="tingkat kepuasan" name="tingkat kepuasan" min="0" max="100" /></td>
+                </tr>
+                <tr>
+                    <td><label for="jenis kelamin">Jenis Kelamin</label></td>
+                    <td>:</td>
+                    <td><input type="radio" id="jenis kelamin" name="jenis kelamin" value="Laki-laki">Laki-laki </td>
+                    <td><input type="radio" id="jenis kelamin" name="jenis kelamin" value="Perempuan">Perempuan </td>
+                </tr>
+                <tr>
+                     <td><label for="hobi">Hobi</label></td>
+                    <td>:</td>
+                    <td><input type="checkbox" id="hobi" name="hobi" value="Membaca">Membaca </td>
+                    <td><input type="checkbox" id="hobi" name="hobi" value="Gaming">Gaming </td>
+                    <td><input type="checkbox" id="hobi" name="hobi" value="Olahraga">Olahraga</td>
+                    <td><input type="checkbox" id="hobi" name="hobi" value="Berkebun">Berkebun </td>
+                </tr>
+                <tr>
+                    <td><label for="foto">Upload Foto</label></td>
+                    <td>:</td>
+                    <td><input type="file" id="foto" name="foto" accept="image/*" /></td>
+                </tr>
+                <tr>
+                    <td><label for="alamat">Alamat</label></td>
+                    <td>:</td>
+                    <td><input type="textarea" id="alamat" name="alamat" /></td>
+                </tr>
+                <tr>
+                    <td><label for="jurusan">Jurusan</label></td>
+                    <td>:</td>
+                    <td><input type="select option" id="jurusan" name="jurusan" /></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button type="submit" name="Submit">Tambah</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
