@@ -62,8 +62,16 @@ function tambahdata($data)
 function hapusdata($id)
 {
     global $koneksi;
+
+    $id = (int) $id;
+
+    if ($id <= 0) {
+        return 0;
+    }
+
     $query = "DELETE FROM mahasiswa WHERE id = $id";
     mysqli_query($koneksi, $query);
+
     return mysqli_affected_rows($koneksi);
 }
 
