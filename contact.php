@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
+<php lang="en">
 <html>
     <head>
         <meta charset="UTF-8">
@@ -20,4 +21,4 @@
             <hr/>
         </body>
     </head>
-</html>
+</php>

@@ -1,5 +1,16 @@
-<!DOCTYPE html>
-<html>
+<?php
+
+require "fungsi.php";
+$qmahasiswa = "SELECT * FROM mahasiswa";
+$mahasiswa = tampildata($qmahasiswa); ///array isinya data mhs
+
+// var_dump($mhs);
+// die;
+
+?>
+
+<!DOCTYPE php>
+<php lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, Iinitial scale=1.0">
@@ -68,4 +79,4 @@
             </tr>
             </table>
         </body>
-</html>
+</php>
