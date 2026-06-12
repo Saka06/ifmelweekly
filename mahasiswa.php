@@ -9,8 +9,8 @@ $mahasiswa = tampildata($qmahasiswa); ///array isinya data mhs
 
 ?>
 
-<!DOCTYPE php>
-<php lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, Iinitial scale=1.0">
@@ -26,57 +26,57 @@ $mahasiswa = tampildata($qmahasiswa); ///array isinya data mhs
                     <td><a href="mahasiswa.php">Data Mahasiswa</a></td>
                 </tr>
             </table>
-            <br>
-            <hr/>
-            <h2>Data Mahasiswa</h2>
-            <a href ="tambahdata.php"></a>
-                <button>Tambah Data</button>
-            <table border="1" cellpadding="10px">
-                <tr>
-                    <th rowspan="2">No</th>
-                    <th rowspan="2">Nama</th>
-                    <th rowspan="2">Foto</th>
-                    <th colspan="3">Nilai</th>
-                </tr>
-                <tr>
-                    <!-- <th>Nama</th> -->
-                    <th>UTS</th>
-                    <th>UAS</th>
-                    <th>TUGAS</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Melati</td>
-                    <td><img src="assets/images/melati.png" alt="Foto" width="60px"></td>
-                    <td align= "center">90</td>
-                    <td align= "center">85</td>
-                    <td align= "center">80</td>
-                </tr>
-            </table>
-            <hr/>
+        <br>
+        <hr/>
+        <h2>Data mahasiswa</h2>
+        <a href="tambahdata.php">
+            <button>Tambah Data</button>
+        </a>
+        <table border="1"cellpadding="10px">
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Jurusan</th>
+                <th>Email</th>
+                <th>No.HP</th>
+                <th>Foto</th>
+                <th>Aksi</th>
+            </tr>
 
-            <table border="1" cellpading="10px">
+            <?php
+            $i = 1;
+            foreach($mahasiswa as $mhs) {
+            ?>
             <tr>
-                <td>1,1</td>
-                <td>1,2</td>
-                <td>1,3</td>
-                <td>1,4</td>
+                <td align="center"><?= $i ?></td>
+                <td><?php echo $mhs["nama"]?></td>
+                <td><?php echo $mhs["nim"]?></td>
+                <td><?php echo $mhs["jurusan"]?></td>
+                <td><?php echo $mhs["email"]?></td>
+                <td><?php echo $mhs["no_hp"]?></td>
+                <td><img src ="assets/image/<?= $mhs["foto"] ?>" alt="Foto" width="60px"></td> 
+                <td>
+                    <a href="editdata.php?id=<?= $mhs["id"] ?>"><button>edit</button></a>
+                    <a href="hapusdata.php?id=<?= $mhs["id"] ?>"><button>Hapus</button></a>
+                    <script>
+                        function confirmDelete() {
+                            return confirm("Yakin ingin menghapus data?");
+                        }
+                    </script>
+                </td>
             </tr>
-            <tr>
-                <td>2,1</td>
-                <td align="center" colspan="2" rowspan="2">?</td>
-                <td>2,4</td>
-            </tr>
-            <tr>
-                <td>3,1</td>
-                <td>3,4</td>
-            </tr>
-            <tr>
-                <td>4,1</td>
-                <td>4,2</td>
-                <td>4,3</td>
-                <td>4,4</td>
-            </tr>
-            </table>
-        </body>
-</php>
+            <?php
+            $i++;
+                }
+            
+            ?>
+    
+            
+        </table>
+        <br>
+        <hr>
+        <br>
+</body>
+</html>
+ 

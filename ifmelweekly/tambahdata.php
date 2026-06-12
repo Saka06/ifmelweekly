@@ -3,9 +3,22 @@
     require "fungsi.php";
 
     if(isset($_POST["submit"]))
+
         {
-            //cek tambah data masuk atau tidak
-            if(tambahdata($_POST) > 0)
+            $nama = $_POST["nama"];
+            $nim = $_POST["nim"];
+            $jurusan = $_POST["jurusan"];
+            $email = $_POST["email"];
+            $nohp = $_POST["no_hp"];
+            $foto = $_POST["foto"];
+
+            $query = "INSERT INTO mahasiswa
+            (nama,nim,jurusan,email,no_hp,foto) VALUES
+            ('$nama', '$nim', '$jurusan', '$email','$nohp', '$foto')";
+
+            mysqli_query($koneksi,$query);
+
+            if(mysqli_affected_rows($koneksi,$query) > 0)
                 {
                     echo "<script>
                             alert('Data Berhasil Ditambahkan!');
@@ -22,6 +35,9 @@
                         ";
                 }
         }
+
+
+
 ?>
 
 

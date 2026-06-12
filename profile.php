@@ -1,5 +1,5 @@
-<!DOCTYPE php>
-<php lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, Iinitial scale=1.0">
@@ -20,4 +20,4 @@
             <hr/>
         </body>
     </head>
-</php>
+</html>
