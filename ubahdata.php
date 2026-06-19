@@ -5,7 +5,7 @@
     $id = $_GET["id"];
 
     $query = "SELECT * FROM mahasiswa WHERE id = $id";
-    $mhs = tampildata($query);
+    $mhs = tampildata($query)[0]; 
 
     var_dump($mhs);
 
@@ -43,32 +43,32 @@
             <tr>
                 <td><label for="nama">Nama :</label></td>
                 <td><input type="text" name="nama" id="nama" required
-                value="<?= $mhs["nama"]; ?>"></td>
+                value="<?= $mhs[0]["nama"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="nim">NIM :</label></td>
                 <td><input type="number" name="nim" id="nim" required
-                value="<?= $mhs["nim"]; ?>"></td>
+                value="<?= $mhs[0]["nim"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="jurusan">Jurusan :</label></td>
                 <td><input type="text" name="jurusan" id="jurusan" required
-                value="<?= $mhs["jurusan"]; ?>"></td>
+                value="<?= $mhs[0]["jurusan"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="email">Email :</label></td>
                 <td><input type="email" name="email" id="email"
-                value="<?= $mhs["email"]; ?>"></td>
+                value="<?= $mhs[0]["email"]; ?>">
             </tr>
             <tr>
                 <td><label for="no_hp">No HP :</label></td>
                 <td><input type="number" name="no_hp" id="no_hp"
-                value="<?= $mhs["no_hp"]; ?>"></td>
+                value="<?= $mhs[0]["no_hp"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="foto">Foto :</label></td>
                 <td><input type="text" name="foto" id="foto"
-                value="<?= $mhs["foto"]; ?>"></td>
+                value="<?= $mhs[0]["foto"]; ?>"></td>
             </tr>
             <tr>
                 <td colspan="3">

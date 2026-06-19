@@ -13,24 +13,36 @@
         return $rows;
     }
 
-    function tambahData($data) {
+    function tambahData($data, $files) {
         global $conn;
         $nama = htmlspecialchars($data["nama"]);
         $nim = htmlspecialchars($data["nim"]);
         $jurusan = htmlspecialchars($data["jurusan"]);
         $email = htmlspecialchars($data["email"]);
         $no_hp = htmlspecialchars($data["no_hp"]);
-        $foto = $data["foto"];
+        $namafoto = $files["name"];
+        $tmpfoto = $files["tmp_name"];
+        $date = date("YmdHis");
+        $newnamafoto = $date . $namafoto;
 
+        // Pindahkan file foto ke folder tujuan
+        $path = "/assets/images/" . $newnamafoto;
+        
+        if (move_uploaded_file($tmpfoto, $path)) {
+            echo "File foto berhasil diunggah.";
+        } else {
+            echo "Gagal mengunggah file foto.";
+        }
+        
         $query = "INSERT INTO mahasiswa (nama, nim, jurusan, email, no_hp, foto) VALUES 
-        ('$nama', '$nim', '$jurusan', '$email', '$no_hp', '$foto')";
+        ('$nama', '$nim', '$jurusan', '$email', '$no_hp', '$newnamafoto')";
         mysqli_query($conn, $query);
         return mysqli_affected_rows($conn);
     }
 
     function hapusData($id) {
         global $conn;
-        $query = "DELETE FROM mahasiswa WHERE id=$id";
+        $query = "DELETE FROM mahasiswa WHERE nim=$id";
         mysqli_query($conn, $query);
         return mysqli_affected_rows($conn);
     }

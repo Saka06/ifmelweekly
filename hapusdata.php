@@ -30,7 +30,7 @@
 
     function hapusData($id) {
         global $conn;
-        $query = "DELETE FROM mahasiswa WHERE id=$id";
+        $query = "DELETE FROM mahasiswa WHERE nim=$id";
         mysqli_query($conn, $query);
         return mysqli_affected_rows($conn);
     }

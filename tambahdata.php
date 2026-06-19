@@ -4,7 +4,7 @@
 
     if(isset($_POST["submit"])) {
         
-        if (tambahData($_POST) > 0) {
+        if (tambahData($_POST, $_FILES['foto']) > 0) {
 
         echo "<script>
                 alert('Data berhasil ditambahkan!');

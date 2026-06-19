@@ -62,7 +62,7 @@
             <td><img src="../assets/images/<?php echo $mhs['foto']; ?>" alt="<?php echo $mhs['foto']; ?>" width="60px"></td>
             <td>
                 <a href="ubahdata.php?id=<?= $mhs['id']; ?>"><button>Edit</button></a> | 
-                <a href="hapusdata.php?id=<?= $mhs['id']?>" onclick="return confirm('Yakin wir?')"><button>Hapus</button></a>
+                <a href="hapusdata.php?id=<?= $mhs['id']?>" onclick="return confirm('Yakin ingin menghapus data ini?')"><button>Hapus</button></a>
             </td>
         </tr>
         <?php
