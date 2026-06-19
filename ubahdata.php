@@ -2,17 +2,24 @@
 
     require 'fungsi.php';
 
+    $id = $_GET["id"];
+
+    $query = "SELECT * FROM mahasiswa WHERE id = $id";
+    $mhs = tampildata($query);
+
+    var_dump($mhs);
+
     if(isset($_POST["submit"])) {
         
-        if (tambahData($_POST) > 0) {
+        if (ubahdata($_POST) > 0) {
 
         echo "<script>
-                alert('Data berhasil ditambahkan!');
+                alert('Data berhasil diubah!');
                 window.location.href = 'mahasiswa.php';
               </script>";
         } else {
         echo "<script>
-                alert('Data gagal ditambahkan!');
+                alert('Data gagal diubah!');
                 window.location.href = 'mahasiswa.php';
               </script>";
     }
@@ -27,39 +34,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Mahasiswa</title>
+    <title>Ubah Data Mahasiswa</title>
 </head>
 <body>
-    <h2>Tambah Data Mahasiswa</h2>
+    <h2>Ubah Data Mahasiswa</h2>
     <form action="" method="post" enctype = "multipart/form-data">
         <table cellPadding="5px">
             <tr>
                 <td><label for="nama">Nama :</label></td>
-                <td><input type="text" name="nama" id="nama" required></td>
+                <td><input type="text" name="nama" id="nama" required
+                value="<?= $mhs["nama"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="nim">NIM :</label></td>
-                <td><input type="number" name="nim" id="nim" required`></td>
+                <td><input type="number" name="nim" id="nim" required
+                value="<?= $mhs["nim"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="jurusan">Jurusan :</label></td>
-                <td><input type="text" name="jurusan" id="jurusan" required></td>
+                <td><input type="text" name="jurusan" id="jurusan" required
+                value="<?= $mhs["jurusan"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="email">Email :</label></td>
-                <td><input type="email" name="email" id="email"></td>
+                <td><input type="email" name="email" id="email"
+                value="<?= $mhs["email"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="no_hp">No HP :</label></td>
-                <td><input type="number" name="no_hp" id="no_hp"></td>
+                <td><input type="number" name="no_hp" id="no_hp"
+                value="<?= $mhs["no_hp"]; ?>"></td>
             </tr>
             <tr>
                 <td><label for="foto">Foto :</label></td>
-                <td><input type="text" name="foto" id="foto"></td>
+                <td><input type="text" name="foto" id="foto"
+                value="<?= $mhs["foto"]; ?>"></td>
             </tr>
             <tr>
                 <td colspan="3">
-                    <button type="submit" name="submit">Tambah</button>
+                    <button type="submit" name="submit">Ubah</button>
                 </td>
             </tr>
         </table>
