@@ -1,72 +1,79 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "root", "ifmelweekly");
 
-    function tampilData($query) {
-        global $conn;
-        $result = mysqli_query($conn, $query);
+$dbConfig = [
+    'host' => 'localhost',
+    'user' => 'root',
+    'pass' => '',
+    'name' => 'mahasiswa',
+    'charset' => 'utf8mb4'
+];
 
-        $rows = [];
+$koneksi = mysqli_connect($dbConfig['host'], $dbConfig['user'], $dbConfig['pass'], $dbConfig['name']);
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $rows[] = $row;
-        }
+if (!$koneksi) {
+    die('Koneksi gagal: ' . mysqli_connect_error());
+}
+
+mysqli_set_charset($koneksi, $dbConfig['charset']);
+
+function tampildata(string $query): array
+{
+    global $koneksi;
+    $rows = [];
+
+    if (empty($query)) {
         return $rows;
     }
 
-    function tambahData($data, $files) {
-        global $conn;
-        $nama = htmlspecialchars($data["nama"]);
-        $nim = htmlspecialchars($data["nim"]);
-        $jurusan = htmlspecialchars($data["jurusan"]);
-        $email = htmlspecialchars($data["email"]);
-        $no_hp = htmlspecialchars($data["no_hp"]);
-        $namafoto = $files["name"];
-        $tmpfoto = $files["tmp_name"];
-        $date = date("YmdHis");
-        $newnamafoto = $date . $namafoto;
+    $result = mysqli_query($koneksi, $query);
 
-        // Pindahkan file foto ke folder tujuan
-        $path = "/assets/images/" . $newnamafoto;
-        
-        if (move_uploaded_file($tmpfoto, $path)) {
-            echo "File foto berhasil diunggah.";
-        } else {
-            echo "Gagal mengunggah file foto.";
-        }
-        
-        $query = "INSERT INTO mahasiswa (nama, nim, jurusan, email, no_hp, foto) VALUES 
-        ('$nama', '$nim', '$jurusan', '$email', '$no_hp', '$newnamafoto')";
-        mysqli_query($conn, $query);
-        return mysqli_affected_rows($conn);
+    if ($result === false) {
+        return $rows; // query failed; return empty array
     }
 
-    function hapusData($id) {
-        global $conn;
-        $query = "DELETE FROM mahasiswa WHERE nim=$id";
-        mysqli_query($conn, $query);
-        return mysqli_affected_rows($conn);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
     }
 
-    function ubahData($data) {
-        global $conn;
-        $id = $data["id"];
-        $nama = htmlspecialchars($data["nama"]);
-        $nim = htmlspecialchars($data["nim"]);
-        $jurusan = htmlspecialchars($data["jurusan"]);
-        $email = htmlspecialchars($data["email"]);
-        $no_hp = htmlspecialchars($data["no_hp"]);
-        $foto = $data["foto"];
+    mysqli_free_result($result);
 
-        $query = "UPDATE mahasiswa SET 
-        nama = '$nama', 
-        nim = '$nim', 
-        jurusan = '$jurusan', 
-        email = '$email', 
-        no_hp = '$no_hp', 
-        foto = '$foto' 
-        WHERE id = $id";
-        
-        mysqli_query($conn, $query);
-        return mysqli_affected_rows($conn);
+    return $rows;
+}
+
+function tambahdata($data)
+{
+    global $koneksi;
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    $nohp = htmlspecialchars($data["no_hp"]);
+    $foto = $data["foto"];
+
+    $query = "INSERT INTO mahasiswa
+            (nama,nim,jurusan,email,no_hp,foto) VALUES
+            ('$nama', '$nim', '$jurusan', '$email','$nohp', '$foto')";
+
+    mysqli_query($koneksi,$query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+function hapusdata($id)
+{
+    global $koneksi;
+
+    $id = (int) $id;
+
+    if ($id <= 0) {
+        return 0;
     }
+
+    $query = "DELETE FROM mahasiswa WHERE id = $id";
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+
 ?>

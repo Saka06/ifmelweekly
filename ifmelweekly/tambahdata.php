@@ -3,9 +3,22 @@
     require "fungsi.php";
 
     if(isset($_POST["submit"]))
+
         {
-            //cek tambah data masuk atau tidak
-            if(tambahdata($_POST) > 0)
+            $nama = $_POST["nama"];
+            $nim = $_POST["nim"];
+            $jurusan = $_POST["jurusan"];
+            $email = $_POST["email"];
+            $nohp = $_POST["no_hp"];
+            $foto = $_POST["foto"];
+
+            $query = "INSERT INTO mahasiswa
+            (nama,nim,jurusan,email,no_hp,foto) VALUES
+            ('$nama', '$nim', '$jurusan', '$email','$nohp', '$foto')";
+
+            mysqli_query($koneksi,$query);
+
+            if(mysqli_affected_rows($koneksi,$query) > 0)
                 {
                     echo "<script>
                             alert('Data Berhasil Ditambahkan!');
@@ -22,6 +35,9 @@
                         ";
                 }
         }
+
+
+
 ?>
 
 
@@ -34,34 +50,6 @@
 </head>
 <body>
     <h2>Tambah Data Mahasiswa</h2>
-<<<<<<< HEAD
-    <form action="" method="post" enctype = "multipart/form-data">
-        <table cellPadding="5px">
-            <tr>
-                <td><label for="nama">Nama :</label></td>
-                <td><input type="text" name="nama" id="nama" required></td>
-            </tr>
-            <tr>
-                <td><label for="nim">NIM :</label></td>
-                <td><input type="number" name="nim" id="nim" required`></td>
-            </tr>
-            <tr>
-                <td><label for="jurusan">Jurusan :</label></td>
-                <td><input type="text" name="jurusan" id="jurusan" required></td>
-            </tr>
-            <tr>
-                <td><label for="email">Email :</label></td>
-                <td><input type="email" name="email" id="email"></td>
-            </tr>
-            <tr>
-                <td><label for="no_hp">No HP :</label></td>
-                <td><input type="number" name="no_hp" id="no_hp"></td>
-            </tr>
-            <tr>
-                <td><label for="foto">Foto :</label></td>
-                <td><input type="text" name="foto" id="foto"></td>
-            </tr>
-=======
     <form>
         <table cellpadding="5px">
             <tr>
@@ -112,92 +100,12 @@
                 <td><input type="text" id="foto" name="foto"></td>
             </tr>
 
->>>>>>> 4d819d952342de5d968f30394fb4396138bef1cb
             <tr>
                 <td colspan="3">
                     <button type="submit" name="submit">Tambah</button>
                 </td>
             </tr>
         </table>
-<<<<<<< HEAD
-        <br>
-        <hr>
-
-        <!-- <form action="">
-            <table cellpadding = "5px">
-                <tr>
-                    <td><label for="nama">Nama: </label></td>
-                    <td><input type="text" id="nama" name="nama"></td>
-                </tr>
-                <tr>
-                    <td><label for="nim">NIM: </label></td>
-                    <td><input type="number" id="nim" name="nim"></td>
-                </tr>
-                <tr>
-                    <td><label for="pw">Password: </label></td>
-                    <td><input type="password" id="pw" name="pw"></td>
-                </tr>
-                <tr>
-                    <td><label for="email">Email: </label></td>
-                    <td><input type="email" id="email" name="email"></td>
-                </tr>
-                <tr>
-                    <td><label for="no">No HP: </label></td>
-                    <td><input type="tel" id="no" name="no"></td>
-                </tr>
-                <tr>
-                    <td><label for="web">Website Pribadi: </label></td>
-                    <td><input type="url" id="web" name="web"></td>
-                </tr>
-                <tr>
-                    <td><label for="ttl">Tanggal Lahir: </label></td>
-                    <td><input type="date" id="ttl" name="ttl"></td>
-                </tr>
-                <tr>
-                    <td><label for="warna">Warna Fav: </label></td>
-                    <td><input type="color" id="warna" name="warna"></td>
-                </tr>
-                <tr>
-                    <td><label for="kepuasan">Tingkat Kepuasan: </label></td>
-                    <td><input type="range" id="kepuasan" name="kepuasan" min="1" max="5"></td>
-                </tr>
-                <tr>
-                    <td><label for="gender">Jenis Kelamin:</label></td>
-                    <td>
-                        <input type="radio" id="laki" name="gender" value="laki">
-                        <label for="laki">Laki-laki</label>
-                        <input type="radio" id="perempuan" name="gender" value="perempuan">
-                        <label for="perempuan">Perempuan</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="hobi">Hobi: </label></td>
-                    <td>
-                        <input type="checkbox" id="hobi1" name="hobi1" value="membaca">
-                        <label for="membaca">Membaca</label>
-                        <input type="checkbox" id="hobi3" name="hobi2" value="menonton">
-                        <label for="menonton">Menonton</label>
-                        <input type="checkbox" id="hobi3" name="hobi3" value="game">
-                        <label for="game">Main Game</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="foto">Foto</label></td>
-                    <td><input type="file" id="foto" name="foto"></td>
-                </tr>
-                <tr>
-                    <td><label for="alamat">Alamat: </label></td>
-                    <td><input type="textarea" id="alamat" name="alamat"></td>
-                </tr>
-                <tr>
-                    <td><label for="jurusan">Jurusan: </label></td>
-                </tr>
-            </table>
-        </form> -->
-        
-    </form>
-</body>
-=======
     </form>
     <br>
     <hr>
@@ -286,5 +194,4 @@
             </table>
         </form>
     </body>
->>>>>>> 4d819d952342de5d968f30394fb4396138bef1cb
 </html>

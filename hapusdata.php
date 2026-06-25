@@ -1,37 +1,25 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "root", "ifmelweekly");
+require "fungsi.php";
 
-    function tampilData($query) {
-        global $conn;
-        $result = mysqli_query($conn, $query);
+$id = isset($_GET["id"]) ? (int) $_GET["id"] : 0;
 
-        $rows = [];
+if ($id <= 0) {
+    echo "<script>
+            alert('ID tidak valid.');
+            window.location.href = 'mahasiswa.php';
+          </script>";
+    exit;
+}
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $rows[] = $row;
-        }
-        return $rows;
-    }
-
-    function tambahData($data) {
-        global $conn;
-        $nama = htmlspecialchars($data["nama"]);
-        $nim = htmlspecialchars($data["nim"]);
-        $jurusan = htmlspecialchars($data["jurusan"]);
-        $email = htmlspecialchars($data["email"]);
-        $no_hp = htmlspecialchars($data["no_hp"]);
-        $foto = $data["foto"];
-
-        $query = "INSERT INTO mahasiswa (nama, nim, jurusan, email, no_hp, foto) VALUES 
-        ('$nama', '$nim', '$jurusan', '$email', '$no_hp', '$foto')";
-        mysqli_query($conn, $query);
-        return mysqli_affected_rows($conn);
-    }
-
-    function hapusData($id) {
-        global $conn;
-        $query = "DELETE FROM mahasiswa WHERE nim=$id";
-        mysqli_query($conn, $query);
-        return mysqli_affected_rows($conn);
-    }
+if (hapusdata($id) > 0) {
+    echo "<script>
+            alert('Data Berhasil Dihapus!');
+            window.location.href = 'mahasiswa.php';
+          </script>";
+} else {
+    echo "<script>
+            alert('Data Gagal Dihapus!');
+            window.location.href = 'mahasiswa.php';
+          </script>";
+}
 ?>
