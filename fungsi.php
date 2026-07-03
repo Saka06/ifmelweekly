@@ -3,12 +3,17 @@
 $dbConfig = [
     'host' => 'localhost',
     'user' => 'root',
-    'pass' => '',
-    'name' => 'mahasiswa',
+    'pass' => 'root',
+    'name' => 'ifmelweekly',
     'charset' => 'utf8mb4'
 ];
 
-$koneksi = mysqli_connect($dbConfig['host'], $dbConfig['user'], $dbConfig['pass'], $dbConfig['name']);
+$koneksi = $koneksi = mysqli_connect(
+    $dbConfig['host'],
+    $dbConfig['user'],
+    $dbConfig['pass'],
+    $dbConfig['name']
+);
 
 if (!$koneksi) {
     die('Koneksi gagal: ' . mysqli_connect_error());
@@ -74,6 +79,35 @@ function hapusdata($id)
 
     return mysqli_affected_rows($koneksi);
 }
+
+function register($data)
+    {
+         global $koneksi;
+
+         $username = stripcslashes($data["username"]);
+         $password1 = mysqli_real_escape_string($koneksi,$data["password1"]);
+         $password2 = mysqli_real_escape_string($koneksi,$data["password2"]);
+
+        if ($password1 != $password2)
+            {
+              echo"<script>
+                    alert('Konfirmasi Password Tidak Sesuai!');
+                    window.location.href='login.php'
+                </script>"; 
+
+             return false;
+            }
+        
+            ////enkripsi password
+            $password_hash = password_hash($password1, PASSWORD_DEFAULT);
+
+            $query = "INSERT INTO user(username,password) VALUES
+            ('$username','$password_hash')";
+
+            mysqli_query($koneksi,$query);
+            return mysqli_affected_rows($koneksi);
+    }
+     
 
 
 ?>

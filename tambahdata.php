@@ -93,6 +93,7 @@
     </form>
     <br>
     <hr>
+    <!--
         <from> 
         <h2>Tambah Data Mahasiswa</h2>
             <table cellpadding="5px">
@@ -172,10 +173,11 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <button type="submit" name="Submit">Tambah</button>
+                       /* <button type="submit" name="Submit">Tambah</button>*/
                     </td>
                 </tr>
             </table>
         </form>
     </body>
+    -->
 </html>
