@@ -107,7 +107,35 @@ function register($data)
             mysqli_query($koneksi,$query);
             return mysqli_affected_rows($koneksi);
     }
-     
 
+function ubahdata($data)
+{
+    global $koneksi;
+
+    $id = isset($data["id"]) ? (int)$data["id"] : 0;
+    if ($id <= 0) {
+        return 0;
+    }
+
+    $nama = htmlspecialchars($data["nama"] ?? "");
+    $nim = htmlspecialchars($data["nim"] ?? "");
+    $jurusan = htmlspecialchars($data["jurusan"] ?? "");
+    $email = htmlspecialchars($data["email"] ?? "");
+    $nohp = htmlspecialchars($data["no_hp"] ?? "");
+    $foto = htmlspecialchars($data["foto"] ?? "");
+
+    $query = "UPDATE mahasiswa SET
+                nama = '$nama',
+                nim = '$nim',
+                jurusan = '$jurusan',
+                email = '$email',
+                no_hp = '$nohp',
+                foto = '$foto'
+              WHERE id = $id";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
 
 ?>

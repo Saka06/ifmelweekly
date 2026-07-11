@@ -2,12 +2,20 @@
 
     require 'fungsi.php';
 
-    $id = $_GET["id"];
+    $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
 
+    // Ambil data berdasarkan ID
     $query = "SELECT * FROM mahasiswa WHERE id = $id";
-    $mhs = tampildata($query)[0]; 
+    $rows = tampildata($query);
+    $mhs = $rows[0] ?? null;
 
-    var_dump($mhs);
+    if (!$mhs) {
+        echo "<script>
+                alert('Data mahasiswa tidak ditemukan!');
+                window.location.href = 'mahasiswa.php';
+              </script>";
+        exit;
+    }
 
     if(isset($_POST["submit"])) {
         
@@ -39,6 +47,7 @@
 <body>
     <h2>Ubah Data Mahasiswa</h2>
     <form action="" method="post" enctype = "multipart/form-data">
+        <input type="hidden" name="id" value="<?= $id; ?>">
         <table cellPadding="5px">
             <tr>
                 <td><label for="nama">Nama :</label></td>
